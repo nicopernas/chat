@@ -3,6 +3,7 @@ package nicopernas.chat.chat;
 
 import "gogoproto/gogo.proto";
 import "chat/params.proto";
+import "chat/next_message_id.proto";
 // this line is used by starport scaffolding # genesis/proto/import
 
 option go_package = "github.com/nicopernas/chat/x/chat/types";
@@ -11,5 +12,6 @@ option go_package = "github.com/nicopernas/chat/x/chat/types";
 message GenesisState {
   Params params = 1 [(gogoproto.nullable) = false];
   string port_id = 2;
+  NextMessageId nextMessageId = 3;
   // this line is used by starport scaffolding # genesis/proto/state
 }

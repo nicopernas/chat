@@ -9,10 +9,19 @@
  * ---------------------------------------------------------------
  */
 
+export interface ChatNextMessageId {
+  /** @format uint64 */
+  messageId?: string;
+}
+
 /**
  * Params defines the parameters for the module.
  */
 export type ChatParams = object;
+
+export interface ChatQueryGetNextMessageIdResponse {
+  NextMessageId?: ChatNextMessageId;
+}
 
 /**
  * QueryParamsResponse is response type for the Query/Params RPC method.
@@ -229,6 +238,22 @@ export class HttpClient<SecurityDataType = unknown> {
  * @version version not set
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryNextMessageId
+   * @summary Queries a NextMessageId by index.
+   * @request GET:/nicopernas/chat/chat/next_message_id
+   */
+  queryNextMessageId = (params: RequestParams = {}) =>
+    this.request<ChatQueryGetNextMessageIdResponse, RpcStatus>({
+      path: `/nicopernas/chat/chat/next_message_id`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
   /**
    * No description
    *

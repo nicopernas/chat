@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { Params } from "../chat/params";
+import { NextMessageId } from "../chat/next_message_id";
 import { Writer, Reader } from "protobufjs/minimal";
 
 export const protobufPackage = "nicopernas.chat.chat";
@@ -7,8 +8,9 @@ export const protobufPackage = "nicopernas.chat.chat";
 /** GenesisState defines the chat module's genesis state. */
 export interface GenesisState {
   params: Params | undefined;
-  /** this line is used by starport scaffolding # genesis/proto/state */
   port_id: string;
+  /** this line is used by starport scaffolding # genesis/proto/state */
+  nextMessageId: NextMessageId | undefined;
 }
 
 const baseGenesisState: object = { port_id: "" };
@@ -20,6 +22,12 @@ export const GenesisState = {
     }
     if (message.port_id !== "") {
       writer.uint32(18).string(message.port_id);
+    }
+    if (message.nextMessageId !== undefined) {
+      NextMessageId.encode(
+        message.nextMessageId,
+        writer.uint32(26).fork()
+      ).ldelim();
     }
     return writer;
   },
@@ -36,6 +44,9 @@ export const GenesisState = {
           break;
         case 2:
           message.port_id = reader.string();
+          break;
+        case 3:
+          message.nextMessageId = NextMessageId.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -57,6 +68,11 @@ export const GenesisState = {
     } else {
       message.port_id = "";
     }
+    if (object.nextMessageId !== undefined && object.nextMessageId !== null) {
+      message.nextMessageId = NextMessageId.fromJSON(object.nextMessageId);
+    } else {
+      message.nextMessageId = undefined;
+    }
     return message;
   },
 
@@ -65,6 +81,10 @@ export const GenesisState = {
     message.params !== undefined &&
       (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     message.port_id !== undefined && (obj.port_id = message.port_id);
+    message.nextMessageId !== undefined &&
+      (obj.nextMessageId = message.nextMessageId
+        ? NextMessageId.toJSON(message.nextMessageId)
+        : undefined);
     return obj;
   },
 
@@ -79,6 +99,11 @@ export const GenesisState = {
       message.port_id = object.port_id;
     } else {
       message.port_id = "";
+    }
+    if (object.nextMessageId !== undefined && object.nextMessageId !== null) {
+      message.nextMessageId = NextMessageId.fromPartial(object.nextMessageId);
+    } else {
+      message.nextMessageId = undefined;
     }
     return message;
   },

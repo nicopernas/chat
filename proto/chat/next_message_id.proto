@@ -1,0 +1,9 @@
+syntax = "proto3";
+package nicopernas.chat.chat;
+
+option go_package = "github.com/nicopernas/chat/x/chat/types";
+
+message NextMessageId {
+  uint64 messageId = 1; 
+  
+}

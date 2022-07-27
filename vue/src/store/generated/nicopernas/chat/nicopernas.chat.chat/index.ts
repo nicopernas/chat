@@ -1,11 +1,12 @@
 import { txClient, queryClient, MissingWalletError , registry} from './module'
 
+import { NextMessageId } from "./module/types/chat/next_message_id"
 import { ChatPacketData } from "./module/types/chat/packet"
 import { NoData } from "./module/types/chat/packet"
 import { Params } from "./module/types/chat/params"
 
 
-export { ChatPacketData, NoData, Params };
+export { NextMessageId, ChatPacketData, NoData, Params };
 
 async function initTxClient(vuexGetters) {
 	return await txClient(vuexGetters['common/wallet/signer'], {
@@ -44,8 +45,10 @@ function getStructure(template) {
 const getDefaultState = () => {
 	return {
 				Params: {},
+				NextMessageId: {},
 				
 				_Structure: {
+						NextMessageId: getStructure(NextMessageId.fromPartial({})),
 						ChatPacketData: getStructure(ChatPacketData.fromPartial({})),
 						NoData: getStructure(NoData.fromPartial({})),
 						Params: getStructure(Params.fromPartial({})),
@@ -82,6 +85,12 @@ export default {
 						(<any> params).query=null
 					}
 			return state.Params[JSON.stringify(params)] ?? {}
+		},
+				getNextMessageId: (state) => (params = { params: {}}) => {
+					if (!(<any> params).query) {
+						(<any> params).query=null
+					}
+			return state.NextMessageId[JSON.stringify(params)] ?? {}
 		},
 				
 		getTypeStructure: (state) => (type) => {
@@ -134,6 +143,28 @@ export default {
 				return getters['getParams']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryParams API Node Unavailable. Could not perform query: ' + e.message)
+				
+			}
+		},
+		
+		
+		
+		
+		 		
+		
+		
+		async QueryNextMessageId({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
+			try {
+				const key = params ?? {};
+				const queryClient=await initQueryClient(rootGetters)
+				let value= (await queryClient.queryNextMessageId()).data
+				
+					
+				commit('QUERY', { query: 'NextMessageId', key: { params: {...key}, query}, value })
+				if (subscribe) commit('SUBSCRIBE', { action: 'QueryNextMessageId', payload: { options: { all }, params: {...key},query }})
+				return getters['getNextMessageId']( { params: {...key}, query}) ?? {}
+			} catch (e) {
+				throw new Error('QueryClient:QueryNextMessageId API Node Unavailable. Could not perform query: ' + e.message)
 				
 			}
 		},

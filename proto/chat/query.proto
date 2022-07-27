@@ -5,6 +5,7 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "chat/params.proto";
+import "chat/next_message_id.proto";
 // this line is used by starport scaffolding # 1
 
 option go_package = "github.com/nicopernas/chat/x/chat/types";
@@ -15,7 +16,11 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/nicopernas/chat/chat/params";
   }
-  // this line is used by starport scaffolding # 2
+  // Queries a NextMessageId by index.
+	rpc NextMessageId(QueryGetNextMessageIdRequest) returns (QueryGetNextMessageIdResponse) {
+		option (google.api.http).get = "/nicopernas/chat/chat/next_message_id";
+	}
+// this line is used by starport scaffolding # 2
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -27,4 +32,9 @@ message QueryParamsResponse {
   Params params = 1 [(gogoproto.nullable) = false];
 }
 
+message QueryGetNextMessageIdRequest {}
+
+message QueryGetNextMessageIdResponse {
+	NextMessageId NextMessageId = 1 [(gogoproto.nullable) = false];
+}
 // this line is used by starport scaffolding # 3
