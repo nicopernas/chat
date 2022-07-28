@@ -73,7 +73,7 @@ func (k Keeper) OnRecvNewSpaceMessagePacket(ctx sdk.Context, packet channeltypes
 		return packetAck, err
 	}
 
-	// TODO: packet reception logic
+	k.StoreNewMessage(ctx, data.User, data.Body)
 
 	return packetAck, nil
 }

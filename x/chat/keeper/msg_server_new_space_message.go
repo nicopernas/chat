@@ -11,7 +11,7 @@ import (
 func (k msgServer) SendNewSpaceMessage(goCtx context.Context, msg *types.MsgSendNewSpaceMessage) (*types.MsgSendNewSpaceMessageResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: logic before transmitting the packet
+	k.StoreNewMessage(ctx, msg.User, msg.Body)
 
 	// Construct the packet
 	var packet types.NewSpaceMessagePacketData

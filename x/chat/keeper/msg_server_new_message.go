@@ -8,9 +8,7 @@ import (
 	"github.com/nicopernas/chat/x/chat/types"
 )
 
-func (k msgServer) NewMessage(goCtx context.Context, msg *types.MsgNewMessage) (*types.MsgNewMessageResponse, error) {
-	ctx := sdk.UnwrapSDKContext(goCtx)
-
+func (k Keeper) StoreNewMessage(ctx sdk.Context, creator, body string) string {
 	nextMessageId, found := k.GetNextMessageId(ctx)
 	if !found {
 		panic("could not find nextMessageId")
@@ -19,13 +17,21 @@ func (k msgServer) NewMessage(goCtx context.Context, msg *types.MsgNewMessage) (
 	messageId := strconv.FormatUint(nextMessageId.MessageId, 10)
 
 	k.SetMessage(ctx, types.Message{
-		Creator:   msg.Creator,
+		Creator:   creator,
 		MessageId: messageId,
-		Body:      msg.Body,
+		Body:      body,
 	})
 
 	nextMessageId.MessageId++
 	k.SetNextMessageId(ctx, nextMessageId)
+
+	return messageId
+}
+
+func (k msgServer) NewMessage(goCtx context.Context, msg *types.MsgNewMessage) (*types.MsgNewMessageResponse, error) {
+	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	messageId := k.StoreNewMessage(ctx, msg.Creator, msg.Body)
 
 	return &types.MsgNewMessageResponse{
 		MessageId: messageId,
