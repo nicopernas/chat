@@ -1,13 +1,11 @@
-
-
-
-
-ignite scaffold chain github.com/nicopernas/chat --no-module
-
-ignite scaffold module chat --ibc
-
-ignite scaffold map message creator body --module chat --index messageId --no-message
-
-ignite scaffold message newMessage body --module chat --response messageId
-
-ignite scaffold packet newSpaceMessage body user --module chat
+$ ignite scaffold chain github.com/nicopernas/chat --no-module
+$ ignite scaffold module chat --ibc
+$ ignite scaffold map message creator body --module chat --index messageId --no-message
+$ ignite scaffold message newMessage body --module chat --response messageId
+$ ignite scaffold packet newSpaceMessage body user --module chat
+# you must add a different grpc-web port to both chain config files
+$ ibc-setup init
+$ ibc-setup init --src chat-1 --dest chat-2
+$ ibc-setup connect -v
+$ ibc-setup channel -v --src-connection connection-0 --dest-connection connection-0 --src-port chat --dest-port chat --version chat-1
+$ ibc-relayer start -v

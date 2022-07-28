@@ -1,0 +1,23 @@
+accounts:
+  - name: bob
+    coins: ["20000token", "200000000stake"]
+  - name: relayer
+    address: "cosmos1rw7lxewu4k558ht8aleye3rkygyn2gwz95gnkj"
+    coins: ["10000token", "100000000stake"]
+validator:
+  name: bob
+  staked: "100000000stake"
+
+init:
+  home: "/Users/nicolas/.chat-2"
+
+genesis:
+  chain_id: "chat-2"
+
+host:
+  rpc: ":36657"
+  p2p: ":36658"
+  prof: ":7060"
+  grpc: ":10092"
+  grpc-web: ":10093"
+  api: ":2337"
