@@ -6,6 +6,7 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "chat/params.proto";
 import "chat/next_message_id.proto";
+import "chat/message.proto";
 // this line is used by starport scaffolding # 1
 
 option go_package = "github.com/nicopernas/chat/x/chat/types";
@@ -20,6 +21,16 @@ service Query {
 	rpc NextMessageId(QueryGetNextMessageIdRequest) returns (QueryGetNextMessageIdResponse) {
 		option (google.api.http).get = "/nicopernas/chat/chat/next_message_id";
 	}
+// Queries a Message by index.
+	rpc Message(QueryGetMessageRequest) returns (QueryGetMessageResponse) {
+		option (google.api.http).get = "/nicopernas/chat/chat/message/{messageId}";
+	}
+
+	// Queries a list of Message items.
+	rpc MessageAll(QueryAllMessageRequest) returns (QueryAllMessageResponse) {
+		option (google.api.http).get = "/nicopernas/chat/chat/message";
+	}
+
 // this line is used by starport scaffolding # 2
 }
 
@@ -37,4 +48,22 @@ message QueryGetNextMessageIdRequest {}
 message QueryGetNextMessageIdResponse {
 	NextMessageId NextMessageId = 1 [(gogoproto.nullable) = false];
 }
+message QueryGetMessageRequest {
+	  string messageId = 1;
+
+}
+
+message QueryGetMessageResponse {
+	Message message = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllMessageRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllMessageResponse {
+	repeated Message message = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
 // this line is used by starport scaffolding # 3

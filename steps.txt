@@ -1,0 +1,13 @@
+
+
+
+
+ignite scaffold chain github.com/nicopernas/chat --no-module
+
+ignite scaffold module chat --ibc
+
+ignite scaffold map message creator body --module chat --index messageId --no-message
+
+ignite scaffold message newMessage body --module chat --response messageId
+
+ignite scaffold packet newSpaceMessage body user --module chat

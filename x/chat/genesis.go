@@ -13,6 +13,10 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 	if genState.NextMessageId != nil {
 		k.SetNextMessageId(ctx, *genState.NextMessageId)
 	}
+	// Set all the message
+	for _, elem := range genState.MessageList {
+		k.SetMessage(ctx, elem)
+	}
 	// this line is used by starport scaffolding # genesis/module/init
 	k.SetPort(ctx, genState.PortId)
 	// Only try to bind to port if it is not already bound, since we may already own
@@ -39,6 +43,7 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	if found {
 		genesis.NextMessageId = &nextMessageId
 	}
+	genesis.MessageList = k.GetAllMessage(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

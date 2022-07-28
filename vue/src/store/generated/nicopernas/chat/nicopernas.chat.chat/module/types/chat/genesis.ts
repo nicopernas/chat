@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { Params } from "../chat/params";
 import { NextMessageId } from "../chat/next_message_id";
+import { Message } from "../chat/message";
 import { Writer, Reader } from "protobufjs/minimal";
 
 export const protobufPackage = "nicopernas.chat.chat";
@@ -9,8 +10,9 @@ export const protobufPackage = "nicopernas.chat.chat";
 export interface GenesisState {
   params: Params | undefined;
   port_id: string;
-  /** this line is used by starport scaffolding # genesis/proto/state */
   nextMessageId: NextMessageId | undefined;
+  /** this line is used by starport scaffolding # genesis/proto/state */
+  messageList: Message[];
 }
 
 const baseGenesisState: object = { port_id: "" };
@@ -29,6 +31,9 @@ export const GenesisState = {
         writer.uint32(26).fork()
       ).ldelim();
     }
+    for (const v of message.messageList) {
+      Message.encode(v!, writer.uint32(34).fork()).ldelim();
+    }
     return writer;
   },
 
@@ -36,6 +41,7 @@ export const GenesisState = {
     const reader = input instanceof Uint8Array ? new Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseGenesisState } as GenesisState;
+    message.messageList = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -48,6 +54,9 @@ export const GenesisState = {
         case 3:
           message.nextMessageId = NextMessageId.decode(reader, reader.uint32());
           break;
+        case 4:
+          message.messageList.push(Message.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -58,6 +67,7 @@ export const GenesisState = {
 
   fromJSON(object: any): GenesisState {
     const message = { ...baseGenesisState } as GenesisState;
+    message.messageList = [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromJSON(object.params);
     } else {
@@ -73,6 +83,11 @@ export const GenesisState = {
     } else {
       message.nextMessageId = undefined;
     }
+    if (object.messageList !== undefined && object.messageList !== null) {
+      for (const e of object.messageList) {
+        message.messageList.push(Message.fromJSON(e));
+      }
+    }
     return message;
   },
 
@@ -85,11 +100,19 @@ export const GenesisState = {
       (obj.nextMessageId = message.nextMessageId
         ? NextMessageId.toJSON(message.nextMessageId)
         : undefined);
+    if (message.messageList) {
+      obj.messageList = message.messageList.map((e) =>
+        e ? Message.toJSON(e) : undefined
+      );
+    } else {
+      obj.messageList = [];
+    }
     return obj;
   },
 
   fromPartial(object: DeepPartial<GenesisState>): GenesisState {
     const message = { ...baseGenesisState } as GenesisState;
+    message.messageList = [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     } else {
@@ -104,6 +127,11 @@ export const GenesisState = {
       message.nextMessageId = NextMessageId.fromPartial(object.nextMessageId);
     } else {
       message.nextMessageId = undefined;
+    }
+    if (object.messageList !== undefined && object.messageList !== null) {
+      for (const e of object.messageList) {
+        message.messageList.push(Message.fromPartial(e));
+      }
     }
     return message;
   },

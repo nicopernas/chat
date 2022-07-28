@@ -1,0 +1,12 @@
+syntax = "proto3";
+package nicopernas.chat.chat;
+
+option go_package = "github.com/nicopernas/chat/x/chat/types";
+
+message Message {
+  string messageId = 1; 
+  string creator = 2; 
+  string body = 3; 
+  
+}
+

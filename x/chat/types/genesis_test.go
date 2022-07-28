@@ -25,9 +25,31 @@ func TestGenesisState_Validate(t *testing.T) {
 				NextMessageId: &types.NextMessageId{
 					MessageId: 21,
 				},
+				MessageList: []types.Message{
+					{
+						MessageId: "0",
+					},
+					{
+						MessageId: "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
+		},
+		{
+			desc: "duplicated message",
+			genState: &types.GenesisState{
+				MessageList: []types.Message{
+					{
+						MessageId: "0",
+					},
+					{
+						MessageId: "0",
+					},
+				},
+			},
+			valid: false,
 		},
 		// this line is used by starport scaffolding # types/genesis/testcase
 	} {

@@ -17,6 +17,14 @@ func TestGenesis(t *testing.T) {
 		NextMessageId: &types.NextMessageId{
 			MessageId: 82,
 		},
+		MessageList: []types.Message{
+			{
+				MessageId: "0",
+			},
+			{
+				MessageId: "1",
+			},
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -31,5 +39,6 @@ func TestGenesis(t *testing.T) {
 	require.Equal(t, genesisState.PortId, got.PortId)
 
 	require.Equal(t, genesisState.NextMessageId, got.NextMessageId)
+	require.ElementsMatch(t, genesisState.MessageList, got.MessageList)
 	// this line is used by starport scaffolding # genesis/test/assert
 }
