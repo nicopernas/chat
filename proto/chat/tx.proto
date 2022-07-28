@@ -7,7 +7,17 @@ option go_package = "github.com/nicopernas/chat/x/chat/types";
 
 // Msg defines the Msg service.
 service Msg {
-    // this line is used by starport scaffolding # proto/tx/rpc
+      rpc NewMessage(MsgNewMessage) returns (MsgNewMessageResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgNewMessage {
+  string creator = 1;
+  string body = 2;
+}
+
+message MsgNewMessageResponse {
+  string messageId = 1;
 }
 
 // this line is used by starport scaffolding # proto/tx/message

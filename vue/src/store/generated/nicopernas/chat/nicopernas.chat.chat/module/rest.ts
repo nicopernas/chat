@@ -15,6 +15,10 @@ export interface ChatMessage {
   body?: string;
 }
 
+export interface ChatMsgNewMessageResponse {
+  messageId?: string;
+}
+
 export interface ChatNextMessageId {
   /** @format uint64 */
   messageId?: string;
