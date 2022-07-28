@@ -19,6 +19,8 @@ export interface ChatMsgNewMessageResponse {
   messageId?: string;
 }
 
+export type ChatMsgSendNewSpaceMessageResponse = object;
+
 export interface ChatNextMessageId {
   /** @format uint64 */
   messageId?: string;

@@ -51763,6 +51763,8 @@ definitions:
     properties:
       messageId:
         type: string
+  nicopernas.chat.chat.MsgSendNewSpaceMessageResponse:
+    type: object
   nicopernas.chat.chat.NextMessageId:
     type: object
     properties:

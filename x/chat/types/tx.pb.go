@@ -123,15 +123,137 @@ func (m *MsgNewMessageResponse) GetMessageId() string {
 	return ""
 }
 
+type MsgSendNewSpaceMessage struct {
+	Creator          string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Port             string `protobuf:"bytes,2,opt,name=port,proto3" json:"port,omitempty"`
+	ChannelID        string `protobuf:"bytes,3,opt,name=channelID,proto3" json:"channelID,omitempty"`
+	TimeoutTimestamp uint64 `protobuf:"varint,4,opt,name=timeoutTimestamp,proto3" json:"timeoutTimestamp,omitempty"`
+	Body             string `protobuf:"bytes,5,opt,name=body,proto3" json:"body,omitempty"`
+	User             string `protobuf:"bytes,6,opt,name=user,proto3" json:"user,omitempty"`
+}
+
+func (m *MsgSendNewSpaceMessage) Reset()         { *m = MsgSendNewSpaceMessage{} }
+func (m *MsgSendNewSpaceMessage) String() string { return proto.CompactTextString(m) }
+func (*MsgSendNewSpaceMessage) ProtoMessage()    {}
+func (*MsgSendNewSpaceMessage) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ff8916ea535b9f2a, []int{2}
+}
+func (m *MsgSendNewSpaceMessage) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgSendNewSpaceMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgSendNewSpaceMessage.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgSendNewSpaceMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgSendNewSpaceMessage.Merge(m, src)
+}
+func (m *MsgSendNewSpaceMessage) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgSendNewSpaceMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgSendNewSpaceMessage.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgSendNewSpaceMessage proto.InternalMessageInfo
+
+func (m *MsgSendNewSpaceMessage) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgSendNewSpaceMessage) GetPort() string {
+	if m != nil {
+		return m.Port
+	}
+	return ""
+}
+
+func (m *MsgSendNewSpaceMessage) GetChannelID() string {
+	if m != nil {
+		return m.ChannelID
+	}
+	return ""
+}
+
+func (m *MsgSendNewSpaceMessage) GetTimeoutTimestamp() uint64 {
+	if m != nil {
+		return m.TimeoutTimestamp
+	}
+	return 0
+}
+
+func (m *MsgSendNewSpaceMessage) GetBody() string {
+	if m != nil {
+		return m.Body
+	}
+	return ""
+}
+
+func (m *MsgSendNewSpaceMessage) GetUser() string {
+	if m != nil {
+		return m.User
+	}
+	return ""
+}
+
+type MsgSendNewSpaceMessageResponse struct {
+}
+
+func (m *MsgSendNewSpaceMessageResponse) Reset()         { *m = MsgSendNewSpaceMessageResponse{} }
+func (m *MsgSendNewSpaceMessageResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgSendNewSpaceMessageResponse) ProtoMessage()    {}
+func (*MsgSendNewSpaceMessageResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ff8916ea535b9f2a, []int{3}
+}
+func (m *MsgSendNewSpaceMessageResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgSendNewSpaceMessageResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgSendNewSpaceMessageResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgSendNewSpaceMessageResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgSendNewSpaceMessageResponse.Merge(m, src)
+}
+func (m *MsgSendNewSpaceMessageResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgSendNewSpaceMessageResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgSendNewSpaceMessageResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgSendNewSpaceMessageResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgNewMessage)(nil), "nicopernas.chat.chat.MsgNewMessage")
 	proto.RegisterType((*MsgNewMessageResponse)(nil), "nicopernas.chat.chat.MsgNewMessageResponse")
+	proto.RegisterType((*MsgSendNewSpaceMessage)(nil), "nicopernas.chat.chat.MsgSendNewSpaceMessage")
+	proto.RegisterType((*MsgSendNewSpaceMessageResponse)(nil), "nicopernas.chat.chat.MsgSendNewSpaceMessageResponse")
 }
 
 func init() { proto.RegisterFile("chat/tx.proto", fileDescriptor_ff8916ea535b9f2a) }
 
 var fileDescriptor_ff8916ea535b9f2a = []byte{
-	// 220 bytes of a gzipped FileDescriptorProto
+	// 342 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4d, 0xce, 0x48, 0x2c,
 	0xd1, 0x2f, 0xa9, 0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x12, 0xc9, 0xcb, 0x4c, 0xce, 0x2f,
 	0x48, 0x2d, 0xca, 0x4b, 0x2c, 0xd6, 0x03, 0xc9, 0x80, 0x09, 0x25, 0x5b, 0x2e, 0x5e, 0xdf, 0xe2,
@@ -139,13 +261,21 @@ var fileDescriptor_ff8916ea535b9f2a = []byte{
 	0xa2, 0xd4, 0xc4, 0x92, 0xfc, 0x22, 0x09, 0x46, 0x05, 0x46, 0x0d, 0xce, 0x20, 0x18, 0x57, 0x48,
 	0x88, 0x8b, 0x25, 0x29, 0x3f, 0xa5, 0x52, 0x82, 0x09, 0x2c, 0x0c, 0x66, 0x2b, 0x99, 0x72, 0x89,
 	0xa2, 0x68, 0x0f, 0x4a, 0x2d, 0x2e, 0xc8, 0xcf, 0x2b, 0x4e, 0x15, 0x92, 0xe1, 0xe2, 0xcc, 0x85,
-	0x08, 0x79, 0xa6, 0x40, 0x0d, 0x42, 0x08, 0x18, 0xa5, 0x72, 0x31, 0xfb, 0x16, 0xa7, 0x0b, 0xc5,
-	0x71, 0x71, 0x21, 0xd9, 0xac, 0xac, 0x87, 0xcd, 0x85, 0x7a, 0x28, 0xe6, 0x4b, 0x69, 0x13, 0xa1,
-	0x08, 0xe6, 0x08, 0x27, 0xc7, 0x13, 0x8f, 0xe4, 0x18, 0x2f, 0x3c, 0x92, 0x63, 0x7c, 0xf0, 0x48,
-	0x8e, 0x71, 0xc2, 0x63, 0x39, 0x86, 0x0b, 0x8f, 0xe5, 0x18, 0x6e, 0x3c, 0x96, 0x63, 0x88, 0x52,
-	0x4f, 0xcf, 0x2c, 0xc9, 0x28, 0x4d, 0xd2, 0x4b, 0xce, 0xcf, 0xd5, 0x47, 0x18, 0xa8, 0x0f, 0x0e,
-	0xb1, 0x0a, 0x08, 0x55, 0x52, 0x59, 0x90, 0x5a, 0x9c, 0xc4, 0x06, 0x0e, 0x3c, 0x63, 0x40, 0x00,
-	0x00, 0x00, 0xff, 0xff, 0xf4, 0x43, 0x5f, 0x56, 0x4d, 0x01, 0x00, 0x00,
+	0x08, 0x79, 0xa6, 0x40, 0x0d, 0x42, 0x08, 0x28, 0xed, 0x60, 0xe4, 0x12, 0xf3, 0x2d, 0x4e, 0x0f,
+	0x4e, 0xcd, 0x4b, 0xf1, 0x4b, 0x2d, 0x0f, 0x2e, 0x48, 0x4c, 0x4e, 0x25, 0xca, 0xfe, 0x82, 0xfc,
+	0xa2, 0x12, 0x98, 0xfd, 0x20, 0x36, 0xc8, 0x9a, 0xe4, 0x8c, 0xc4, 0xbc, 0xbc, 0xd4, 0x1c, 0x4f,
+	0x17, 0x09, 0x66, 0x88, 0x35, 0x70, 0x01, 0x21, 0x2d, 0x2e, 0x81, 0x92, 0xcc, 0xdc, 0xd4, 0xfc,
+	0xd2, 0x92, 0x90, 0xcc, 0xdc, 0xd4, 0xe2, 0x92, 0xc4, 0xdc, 0x02, 0x09, 0x16, 0x05, 0x46, 0x0d,
+	0x96, 0x20, 0x0c, 0x71, 0xb8, 0xef, 0x58, 0x11, 0xbe, 0x03, 0x89, 0x95, 0x16, 0xa7, 0x16, 0x49,
+	0xb0, 0x41, 0xc4, 0x40, 0x6c, 0x25, 0x05, 0x2e, 0x39, 0xec, 0x2e, 0x87, 0x79, 0xdd, 0xe8, 0x01,
+	0x23, 0x17, 0xb3, 0x6f, 0x71, 0xba, 0x50, 0x1c, 0x17, 0x17, 0x52, 0xb8, 0x2a, 0xeb, 0x61, 0x0b,
+	0x7f, 0x3d, 0x94, 0xd0, 0x93, 0xd2, 0x26, 0x42, 0x11, 0x3c, 0x88, 0x2b, 0xb9, 0x84, 0xb1, 0x05,
+	0xa0, 0x0e, 0x4e, 0x33, 0xb0, 0xa8, 0x96, 0x32, 0x21, 0x45, 0x35, 0xcc, 0x6a, 0x27, 0xc7, 0x13,
+	0x8f, 0xe4, 0x18, 0x2f, 0x3c, 0x92, 0x63, 0x7c, 0xf0, 0x48, 0x8e, 0x71, 0xc2, 0x63, 0x39, 0x86,
+	0x0b, 0x8f, 0xe5, 0x18, 0x6e, 0x3c, 0x96, 0x63, 0x88, 0x52, 0x4f, 0xcf, 0x2c, 0xc9, 0x28, 0x4d,
+	0xd2, 0x4b, 0xce, 0xcf, 0xd5, 0x47, 0x98, 0xac, 0x0f, 0x4e, 0x8a, 0x15, 0x10, 0xaa, 0xa4, 0xb2,
+	0x20, 0xb5, 0x38, 0x89, 0x0d, 0x9c, 0x2a, 0x8d, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0x36, 0xf1,
+	0x84, 0x02, 0xa6, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -161,6 +291,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MsgClient interface {
 	NewMessage(ctx context.Context, in *MsgNewMessage, opts ...grpc.CallOption) (*MsgNewMessageResponse, error)
+	SendNewSpaceMessage(ctx context.Context, in *MsgSendNewSpaceMessage, opts ...grpc.CallOption) (*MsgSendNewSpaceMessageResponse, error)
 }
 
 type msgClient struct {
@@ -180,9 +311,19 @@ func (c *msgClient) NewMessage(ctx context.Context, in *MsgNewMessage, opts ...g
 	return out, nil
 }
 
+func (c *msgClient) SendNewSpaceMessage(ctx context.Context, in *MsgSendNewSpaceMessage, opts ...grpc.CallOption) (*MsgSendNewSpaceMessageResponse, error) {
+	out := new(MsgSendNewSpaceMessageResponse)
+	err := c.cc.Invoke(ctx, "/nicopernas.chat.chat.Msg/SendNewSpaceMessage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	NewMessage(context.Context, *MsgNewMessage) (*MsgNewMessageResponse, error)
+	SendNewSpaceMessage(context.Context, *MsgSendNewSpaceMessage) (*MsgSendNewSpaceMessageResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -191,6 +332,9 @@ type UnimplementedMsgServer struct {
 
 func (*UnimplementedMsgServer) NewMessage(ctx context.Context, req *MsgNewMessage) (*MsgNewMessageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NewMessage not implemented")
+}
+func (*UnimplementedMsgServer) SendNewSpaceMessage(ctx context.Context, req *MsgSendNewSpaceMessage) (*MsgSendNewSpaceMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendNewSpaceMessage not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -215,6 +359,24 @@ func _Msg_NewMessage_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_SendNewSpaceMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgSendNewSpaceMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).SendNewSpaceMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nicopernas.chat.chat.Msg/SendNewSpaceMessage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).SendNewSpaceMessage(ctx, req.(*MsgSendNewSpaceMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "nicopernas.chat.chat.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -222,6 +384,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "NewMessage",
 			Handler:    _Msg_NewMessage_Handler,
+		},
+		{
+			MethodName: "SendNewSpaceMessage",
+			Handler:    _Msg_SendNewSpaceMessage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -295,6 +461,92 @@ func (m *MsgNewMessageResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgSendNewSpaceMessage) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgSendNewSpaceMessage) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgSendNewSpaceMessage) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.User) > 0 {
+		i -= len(m.User)
+		copy(dAtA[i:], m.User)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.User)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.Body) > 0 {
+		i -= len(m.Body)
+		copy(dAtA[i:], m.Body)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Body)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if m.TimeoutTimestamp != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.TimeoutTimestamp))
+		i--
+		dAtA[i] = 0x20
+	}
+	if len(m.ChannelID) > 0 {
+		i -= len(m.ChannelID)
+		copy(dAtA[i:], m.ChannelID)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.ChannelID)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Port) > 0 {
+		i -= len(m.Port)
+		copy(dAtA[i:], m.Port)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Port)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgSendNewSpaceMessageResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgSendNewSpaceMessageResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgSendNewSpaceMessageResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -333,6 +585,47 @@ func (m *MsgNewMessageResponse) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
+	return n
+}
+
+func (m *MsgSendNewSpaceMessage) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Port)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.ChannelID)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if m.TimeoutTimestamp != 0 {
+		n += 1 + sovTx(uint64(m.TimeoutTimestamp))
+	}
+	l = len(m.Body)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.User)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgSendNewSpaceMessageResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
 	return n
 }
 
@@ -517,6 +810,285 @@ func (m *MsgNewMessageResponse) Unmarshal(dAtA []byte) error {
 			}
 			m.MessageId = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgSendNewSpaceMessage) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgSendNewSpaceMessage: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgSendNewSpaceMessage: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Port", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Port = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ChannelID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ChannelID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field TimeoutTimestamp", wireType)
+			}
+			m.TimeoutTimestamp = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.TimeoutTimestamp |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Body", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Body = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field User", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.User = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgSendNewSpaceMessageResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgSendNewSpaceMessageResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgSendNewSpaceMessageResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTx(dAtA[iNdEx:])
